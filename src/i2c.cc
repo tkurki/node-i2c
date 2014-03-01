@@ -117,7 +117,7 @@ Handle<Value> ReadByte(const Arguments& args) {
   }
   return scope.Close(data);
 }
-
+/*
 Handle<Value> ReadBlock(const Arguments& args) {
   HandleScope scope;
 
@@ -125,7 +125,7 @@ Handle<Value> ReadBlock(const Arguments& args) {
   int32_t len = args[1]->Int32Value();
   uint8_t data[len]; 
   Local<Value> err = Local<Value>::New(Null());
-  node::Buffer *buffer =  node::Buffer::New(len);
+  v8::Local<v8::Object> buffer =  node::Buffer::New(len);
 
   Local<Object> globalObj = Context::GetCurrent()->Global();
   Local<Function> bufferConstructor = Local<Function>::Cast(globalObj->Get(String::New("Buffer")));
@@ -155,7 +155,7 @@ Handle<Value> ReadBlock(const Arguments& args) {
   }
   return scope.Close(actualBuffer);
 }
-
+*/
 
 Handle<Value> WriteByte(const Arguments& args) {
   HandleScope scope;
@@ -248,10 +248,10 @@ void Init(Handle<Object> target) {
 
   target->Set(String::NewSymbol("readByte"),
     FunctionTemplate::New(ReadByte)->GetFunction());
-
+/*
   target->Set(String::NewSymbol("readBlock"),
     FunctionTemplate::New(ReadBlock)->GetFunction());
-
+*/
 }
 
 NODE_MODULE(i2c, Init)
